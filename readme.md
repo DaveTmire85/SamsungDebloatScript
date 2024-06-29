@@ -3,7 +3,7 @@
 
 ## Overview
 
-This project contains a shell script designed to uninstall a list of applications from an Android device. The script reads the package names of the applications to be uninstalled from a text file and attempts to uninstall each one, logging the results.
+This project contains a shell script designed to uninstall a list of applications from any Android device. The current app.txt has quite a lot of the standard Samsung bloat, but you can edit the apps.txt to include any Android app you want to try to remove. The script reads the package names of the applications to be uninstalled from a text file and attempts to uninstall each one, logging the results. If you don't know the full name of the app - ex.: samsung.browser instead of com.samsung.browser - it's ok, the script will search for all apps with the partial name. 
 
 ## Files Included
 
@@ -34,11 +34,11 @@ This project contains a shell script designed to uninstall a list of application
 ## Usage Instructions
 
 1. **Prepare the Device**:
-   - Ensure the device is rooted or has the necessary permissions to uninstall system applications.
-   - Place the `apps.txt` file in the `/sdcard/` directory of the device.
+   - Install ADB drivers for your device, and make sure you have ADB installed on your Linux machine. Alternatively, you can use Git Bash on Windows.
+   - If you want, you can use this from the device itself using Terminal Emulator.
 
 2. **Run the Script**:
-   - Execute the `uninstall_script.sh` script on the device. This can typically be done via a terminal emulator on the device or through an ADB (Android Debug Bridge) shell.
+   - Execute the `uninstall_script.sh` script on the device. This can typically be done via a terminal emulator or an ADB (Android Debug Bridge) shell.
 
 ## Example Usage
 
@@ -56,25 +56,27 @@ sh /path/to/uninstall_script.sh
   - To change the list of applications to be uninstalled, edit the `apps.txt` file and add or remove package names as needed.
 
 - **Handling Errors**:
-  - The script handles cases where the application is not found or the uninstallation fails, logging appropriate messages for troubleshooting.
+  - The script handles cases where the application is not found or the uninstallation fails by continuing on and logging all output into a separate log
+    file. If there are any errors you want help with, I'll need the log to troubleshoot. Please note that some apps cannot be removed without root
+    permissions, but you wouldn't need this if you had root, right? Right?!?
 
 ## Sample `apps.txt` Content
 
 Here is an example of what the `apps.txt` file might look like:
 
 ```
-dsi.ant.sample.acquirechannels
-dsi.ant.service.socket
-samsung.android.messaging
-samsung.android.drivelink.stub
-sec.android.app.sbrowser
-google.android.apps.tachyon
-pandora.android
-audible.application
+com.dsi.ant.sample.acquirechannels
+com.dsi.ant.service.socket
+com.samsung.android.messaging
+com.samsung.android.drivelink.stub
+com.sec.android.app.sbrowser
+com.google.android.apps.tachyon
+com.pandora.android
+com.audible.application
 ```
 
 Each line in the `apps.txt` file represents the package name of an application to be uninstalled.
 
 ## Contact
 
-For any issues or further inquiries, please contact [Your Name/Email].
+For any issues or further inquiries, please contact [davetmire85 AT gmail.com]. Do me a favor and include "GitHub Debloat" in the subject line, or the email will likely be filtered to SPAM and I'll miss it.
